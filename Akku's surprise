@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', cursive;
+  background: linear-gradient(135deg, #ffe6eb, #fff5f7, #ffd1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  color: #8b0035;
+}
+
+.page {
+  text-align: center;
+  max-width: 90%;
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.sparkle {
+  color: #d6004a;
+  font-weight: bold;
+  cursor: pointer;
+  animation: sparkle 1.5s infinite alternate;
+}
+
+@keyframes sparkle {
+  from { text-shadow: 0 0 5px #ff99b6; }
+  to { text-shadow: 0 0 15px #ff3366; }
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+  font-weight: bold;
+}
+
+#no {
+  background: #fff;
+  color: #ff4d6d;
+  position: absolute;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  color: #ff4d6d;
+  font-size: 20px;
+  animation: float 3s linear forwards;
+}
+
+@keyframes float {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-150px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic music -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<div class="page" id="page1">
+  <h1>
+    To the one I adore, 
+    <span class="sparkle" id="petName">Cooco♥️</span>,
+  </h1>
+
+  <p>
+    You spend your days designing and repairing the science behind heartbeats,  
+    but somehow you still managed to reprogram mine without any manual.<br><br>
+
+    You dance like rhythm runs in your veins and live life like it’s a perfect formula,  
+    yet with me you make everything beautifully unpredictable.<br><br>
+
+    So this Valentine’s, let’s sync our steps to the rhythm of love…
+  </p>
+
+  <h2>Will you be my Valentine?</h2>
+  <p>~ Yours limited edition, <b>Akku♥️</b></p>
+
+  <div class="buttons">
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 🙃</button>
+  </div>
+</div>
+
+<div class="page" id="page2" style="display:none;">
+  <h1>Thanks for choosing the only option ❤️</h1>
+  <p>
+    From now on, you’re officially in charge of maintaining my heart  
+    and keeping our love in perfect rhythm — no system errors allowed.<br><br>
+    Let’s make this our favorite long-term project ♥️
+  </p>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const music = document.getElementById("music");
+const petName = document.getElementById("petName");
+
+/* NO button runs away */
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+/* YES click */
+yesBtn.addEventListener("click", () => {
+  music.play();
+  page1.style.display = "none";
+  page2.style.display = "block";
+  heartConfetti();
+});
+
+/* Heart confetti */
+function heartConfetti() {
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.bottom = "0px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
+
+/* Easter egg on double click */
+petName.addEventListener("dblclick", () => {
+  alert("I feel for you, like andarse 🤭🌸");
+});
+</script>
+
+</body>
+</html>
